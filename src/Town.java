@@ -63,7 +63,7 @@ public class Town {
         boolean canLeaveTown = terrain.canCrossTerrain(hunter);
         if (canLeaveTown) {
             String item = terrain.getNeededItem();
-            printMessage = "You used your " + item + " to cross the " + terrain.getTerrainName() + ".";
+            printMessage = "You used your " + item + " to cross the " + Colors.CYAN +terrain.getTerrainName()+ Colors.RESET + ".";
             if (checkItemBreak()) {
                 hunter.removeItemFromKit(item);
                 printMessage += "\nUnfortunately, your " + item + " broke.";
@@ -99,22 +99,22 @@ public class Town {
         if (Math.random() > noTroubleChance) {
             printMessage = "You couldn't find any trouble";
         } else {
-            printMessage = "You want trouble, stranger!  You got it!\nOof! Umph! Ow!\n";
+            printMessage = Colors.RED+"You want trouble, stranger!  You got it!\nOof! Umph! Ow!\n";
             int goldDiff = (int) (Math.random() * 10) + 1;
             if (Math.random() > noTroubleChance) {
-                printMessage += "Okay, stranger! You proved yer mettle. Here, take my gold.";
-                printMessage += "\nYou won the brawl and receive " + goldDiff + " gold.";
+                printMessage += "Okay, stranger! You proved yer mettle. Here, take my gold."+ Colors.RESET;
+                printMessage += "\nYou won the brawl and receive " + Colors.YELLOW +goldDiff + Colors.RESET+ " gold.";
                 hunter.changeGold(goldDiff);
             } else {
-                printMessage += "That'll teach you to go lookin' fer trouble in MY town! Now pay up!";
-                printMessage += "\nYou lost the brawl and pay " + goldDiff + " gold.";
+                printMessage += "That'll teach you to go lookin' fer trouble in MY town! Now pay up!"+ Colors.RESET;
+                printMessage += "\nYou lost the brawl and pay " +  Colors.YELLOW + goldDiff + Colors.RESET + " gold.";
                 hunter.changeGold(-goldDiff);
             }
         }
     }
 
     public String infoString() {
-        return "This nice little town is surrounded by " + terrain.getTerrainName() + ".";
+        return "This nice little town is surrounded by " + Colors.CYAN+terrain.getTerrainName()+Colors.RESET + ".";
     }
 
     /**
