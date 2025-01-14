@@ -27,6 +27,9 @@ public class Hunter {
         kit = new String[]{"water", "rope", "machete", "horse", "boat", "boots"};
     }
 
+    public void easyStart() {
+        gold = 40;
+    }
     //Accessors
     public String getHunterName() {
         return hunterName;
