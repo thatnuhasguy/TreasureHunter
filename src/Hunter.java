@@ -24,7 +24,7 @@ public class Hunter {
 
     public void testStart() {
         gold = 100;
-        kit = new String[]{"water", "rope", "machete", "horse", "boat"};
+        kit = new String[]{"water", "rope", "machete", "horse", "boat", "boots"};
     }
 
     //Accessors
