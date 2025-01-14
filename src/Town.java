@@ -35,9 +35,7 @@ public class Town {
         return terrain;
     }
 
-    public String getLatestNews() {
-        return printMessage;
-    }
+    public String getLatestNews() { return printMessage; }
 
     /**
      * Assigns an object to the Hunter in town.
