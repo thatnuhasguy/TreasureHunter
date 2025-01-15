@@ -62,7 +62,7 @@ public class Town {
         if (canLeaveTown) {
             String item = terrain.getNeededItem();
             printMessage = "You used your " + item + " to cross the " + Colors.CYAN +terrain.getTerrainName()+ Colors.RESET + ".";
-            if (checkItemBreak()) {
+            if (!TreasureHunter.easyMode && checkItemBreak()) {
                 hunter.removeItemFromKit(item);
                 printMessage += "\nUnfortunately, you lost your " + item + ".";
             }
