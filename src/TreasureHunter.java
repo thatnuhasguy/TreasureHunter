@@ -16,7 +16,7 @@ public class TreasureHunter {
     private Town currentTown;
     private Hunter hunter;
     private boolean hardMode;
-    private boolean easyMode;
+    public static boolean easyMode;
 
     /**
      * Constructs the Treasure Hunter game.
