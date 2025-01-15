@@ -64,21 +64,24 @@ public class Town {
         } else if(rnd==3){
             treasure="gem";
         }else {
-            treasure="sand";
+            treasure="dust";
         }
         treasureCollected=false;
     }
     public void searchTreasure(){
+
         if(!treasureCollected) {
             int idx = -1;
-            String inv="";
             for (int i = 0; i < hunter.getTreasures().length; i++) {
                 if (hunter.getTreasures()[i] == null) {
                     idx = i;
                     break;
                 }
             }
-            if(idx>0) {
+            if(idx==-1){
+                System.out.println("You found a "+treasure);
+                System.out.println("Your treasure inventory is full. No more treasures can be collected");
+            } else if(idx>=0) {
                 int count = 0;
                 for (int i = 0; i < hunter.getTreasures().length; i++) {
                     if (hunter.getTreasures()[i] != null && hunter.getTreasures()[i].equals(treasure)) {
@@ -86,14 +89,15 @@ public class Town {
                     }
                 }
                 if (count == 0) {
-                    hunter.getTreasures()[idx] = treasure;
-                    System.out.println("You collected a "+treasure);
-                    for (int i = 0; i < hunter.getTreasures().length; i++) {
-                        if(hunter.getTreasures()[i] != null){
-                            inv+=hunter.getTreasures()[i];
-                        }
+                    System.out.println("You found a "+treasure);
+                    if(!treasure.equals("dust")){
+                        hunter.getTreasures()[idx] = treasure;
+                    } else {
+                        System.out.println("You found dust loser!");
                     }
-                    System.out.println("Your treasure inventory consists of: "+inv);
+                }else{
+                    System.out.println("You found a "+treasure);
+                    System.out.println("You already have this treasure!");
                 }
                 setTreasureCollected(true);
             }
