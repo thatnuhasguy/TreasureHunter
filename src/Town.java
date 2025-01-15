@@ -11,6 +11,9 @@ public class Town {
     private Terrain terrain;
     private String printMessage;
     private boolean toughTown;
+    private String treasure;
+    private boolean treasureCollected;
+
 
     /**
      * The Town Constructor takes in a shop and the surrounding terrain, but leaves the hunter as null until one arrives.
@@ -50,7 +53,57 @@ public class Town {
         } else {
             printMessage += "\nWe're just a sleepy little town with mild mannered folk.";
         }
+        assignTreasure();
     }
+    public void assignTreasure(){
+        double rnd = (int) ((Math.random() * 4)+1);
+        if(rnd==1){
+            treasure="crown";
+        } else if (rnd==2) {
+            treasure="trophy";
+        } else if(rnd==3){
+            treasure="gem";
+        }else {
+            treasure="sand";
+        }
+        treasureCollected=false;
+    }
+    public void searchTreasure(){
+        if(!treasureCollected) {
+            int idx = -1;
+            String inv="";
+            for (int i = 0; i < hunter.getTreasures().length; i++) {
+                if (hunter.getTreasures()[i] == null) {
+                    idx = i;
+                    break;
+                }
+            }
+            if(idx>0) {
+                int count = 0;
+                for (int i = 0; i < hunter.getTreasures().length; i++) {
+                    if (hunter.getTreasures()[i] != null && hunter.getTreasures()[i].equals(treasure)) {
+                        count++;
+                    }
+                }
+                if (count == 0) {
+                    hunter.getTreasures()[idx] = treasure;
+                    System.out.println("You collected a "+treasure);
+                    for (int i = 0; i < hunter.getTreasures().length; i++) {
+                        if(hunter.getTreasures()[i] != null){
+                            inv+=hunter.getTreasures()[i];
+                        }
+                    }
+                    System.out.println("Your treasure inventory consists of: "+inv);
+                }
+                setTreasureCollected(true);
+            }
+        } else{
+            System.out.println("You already searched this town!");
+        }
+
+
+    }
+
 
     /**
      * Handles the action of the Hunter leaving the town.
@@ -178,4 +231,13 @@ public class Town {
     public String getPrintMessage() {
         return printMessage;
     }
+    public void setTreasureCollected(boolean treasureCollected) {
+        this.treasureCollected = treasureCollected;
+    }
+
+
+    public boolean isTreasureCollected() {
+        return treasureCollected;
+    }
+
 }

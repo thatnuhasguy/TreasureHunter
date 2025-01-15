@@ -104,53 +104,60 @@ public class TreasureHunter {
      */
     private void showMenu() {
 
-           String choice = "";
-           while (!choice.equals("x")) {
-               if(hunter.getGold()<0){
-                   System.out.println("Game over! Your balance of gold is less than the amount you need to pay up. ");
-                   break;
-               }
-               System.out.println();
-               System.out.println(currentTown.getLatestNews());
-               System.out.println("***");
-               System.out.println(hunter.infoString());
-               System.out.println(currentTown.infoString());
-               System.out.println("(B)uy something at the shop.");
-               System.out.println("(S)ell something at the shop.");
-               System.out.println("(E)xplore surrounding terrain.");
-               System.out.println("(M)ove on to a different town.");
-               System.out.println("(L)ook for trouble!");
-               System.out.println("Give up the hunt and e(X)it.");
-               System.out.println();
-               System.out.print("What's your next move? ");
-               choice = SCANNER.nextLine().toLowerCase();
-               processChoice(choice);
-           }
+
+        String choice = "";
+        while (!choice.equals("x")) {
+            if(hunter.getGold()<0){
+                System.out.println("Game over! Your balance of gold is less than the amount you need to pay up. ");
+                break;
+            }
+            System.out.println();
+            System.out.println(currentTown.getLatestNews());
+            System.out.println("***");
+            System.out.println(hunter.infoString());
+            System.out.println(currentTown.infoString());
+            System.out.println("(B)uy something at the shop.");
+            System.out.println("(S)ell something at the shop.");
+            System.out.println("(E)xplore surrounding terrain.");
+            System.out.println("(M)ove on to a different town.");
+            System.out.println("(L)ook for trouble!");
+            System.out.println("(H)unt for treasure");
+            System.out.println("Give up the hunt and e(X)it.");
+            System.out.println();
+            System.out.print("What's your next move? ");
+            choice = SCANNER.nextLine().toLowerCase();
+            processChoice(choice);
+        }
+
 
     }
+
 
     /**
      * Takes the choice received from the menu and calls the appropriate method to carry out the instructions.
      * @param choice The action to process.
      */
     private void processChoice(String choice) {
-            if (choice.equals("b") || choice.equals("s")) {
-                currentTown.enterShop(choice);
-            } else if (choice.equals("e")) {
-                System.out.println(currentTown.getTerrain().infoString());
-            } else if (choice.equals("m")) {
-                if (currentTown.leaveTown()) {
-                    // This town is going away so print its news ahead of time.
-                    System.out.println(currentTown.getLatestNews());
-                    enterTown();
-                }
-            } else if (choice.equals("l")) {
-                currentTown.lookForTrouble();
-                System.out.println(currentTown.getPrintMessage());
-            } else if (choice.equals("x")) {
-                System.out.println("Fare thee well, " + hunter.getHunterName() + "!");
-            } else {
-                System.out.println("Yikes! That's an invalid option! Try again.");
+        if (choice.equals("b") || choice.equals("s")) {
+            currentTown.enterShop(choice);
+        } else if (choice.equals("e")) {
+            System.out.println(currentTown.getTerrain().infoString());
+        } else if (choice.equals("m")) {
+            if (currentTown.leaveTown()) {
+                // This town is going away so print its news ahead of time.
+                System.out.println(currentTown.getLatestNews());
+                enterTown();
             }
+        } else if (choice.equals("l")) {
+            currentTown.lookForTrouble();
+            System.out.println(currentTown.getPrintMessage());
+        } else if(choice.equals("h")){
+            currentTown.searchTreasure();
+        } else if (choice.equals("x")) {
+            System.out.println("Fare thee well, " + hunter.getHunterName() + "!");
+        } else {
+            System.out.println("Yikes! That's an invalid option! Try again.");
+        }
     }
+
 }
