@@ -92,8 +92,6 @@ public class Town {
                     System.out.println("You found a "+treasure);
                     if(!treasure.equals("dust")){
                         hunter.getTreasures()[idx] = treasure;
-                    } else {
-                        System.out.println("You found dust loser!");
                     }
                 }else{
                     System.out.println("You found a "+treasure);

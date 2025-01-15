@@ -152,6 +152,14 @@ public class Hunter {
         if (!kitIsEmpty()) {
             str += " and " + getInventory();
         }
+        if (!treasuresIsEmpty()){
+            str += "\n" + "Treasures found: ";
+            for (int i = 0; i < getTreasures().length; i++) {
+                if (getTreasures()[i] != null) {
+                    str += getTreasures()[i] + " ";
+                }
+            }
+        }
         return str;
     }
 
@@ -179,6 +187,15 @@ public class Hunter {
      */
     private boolean kitIsEmpty() {
         for (String string : kit) {
+            if (string != null) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean treasuresIsEmpty() {
+        for (String string : treasures) {
             if (string != null) {
                 return false;
             }
