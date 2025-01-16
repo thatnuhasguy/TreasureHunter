@@ -13,7 +13,8 @@ public class Town {
     private boolean toughTown;
     private String treasure;
     private boolean treasureCollected;
-    private boolean threeTreasures;
+    private boolean hasDug;
+
 
 
     /**
@@ -33,6 +34,7 @@ public class Town {
 
         // higher toughness = more likely to be a tough town
         toughTown = (Math.random() < toughness);
+        hasDug=false;
     }
 
     public Terrain getTerrain() {
@@ -105,6 +107,26 @@ public class Town {
         }
 
 
+    }
+    public void dig(){
+        if(!hasDug) {
+            if (hunter.hasItemInKit("shovel")) {
+                if (Math.random() > .5) {
+                    int goldFound = ((int) (Math.random() * 20)) + 1;
+                    hunter.changeGold(goldFound);
+                    System.out.println("You dug up " + goldFound + " gold!");
+                    hasDug = true;
+                } else {
+                    System.out.println("You dug but only found dirt");
+                    hasDug = true;
+                }
+            } else {
+                System.out.println("You can't dig for gold without a shovel");
+            }
+
+        }else{
+            System.out.println("You already dug for gold in this town.");
+        }
     }
 
 
