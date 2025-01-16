@@ -106,7 +106,7 @@ public class TreasureHunter {
 
 
         String choice = "";
-        while (!choice.equals("x")) {
+        while (!choice.equals("x")&& !currentTown.isThreeTreasures()) {
             if(hunter.getGold()<0){
                 System.out.println("Game over! Your balance of gold is less than the amount you need to pay up. ");
                 break;
@@ -153,6 +153,9 @@ public class TreasureHunter {
             System.out.println(currentTown.getPrintMessage());
         } else if(choice.equals("h")){
             currentTown.searchTreasure();
+            if(currentTown.isThreeTreasures()){
+                System.out.println("Congratulations, you have found the last of the three treasures, you win!");
+            }
         } else if (choice.equals("x")) {
             System.out.println("Fare thee well, " + hunter.getHunterName() + "!");
         } else {

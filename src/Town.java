@@ -13,6 +13,7 @@ public class Town {
     private boolean toughTown;
     private String treasure;
     private boolean treasureCollected;
+    private boolean threeTreasures;
 
 
     /**
@@ -242,4 +243,17 @@ public class Town {
         return treasureCollected;
     }
 
+    public boolean isThreeTreasures() {
+        int count=0;
+        for (int i = 0; i < hunter.getTreasures().length; i++) {
+            if(hunter.getTreasures()[i]!=null){
+                count++;
+            }
+        }
+        if(count==3){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }
