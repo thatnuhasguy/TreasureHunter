@@ -167,8 +167,8 @@ public class Town {
      */
     public void lookForTrouble() {
         double noTroubleChance;
+        double loseChance;
         if (TreasureHunter.easyMode) {
-            double loseChance;
             if (toughTown) {
                 noTroubleChance = 0.66;
                 loseChance = .33;
@@ -183,6 +183,29 @@ public class Town {
                 int goldDiff = (int) (Math.random() * 10) + 1;
                 if (Math.random() > loseChance) {
                     printMessage += "Okay, stranger! You proved yer mettle. Here, take my gold." + Colors.RESET;
+                    printMessage += "\nYou won the brawl and receive " + Colors.YELLOW + goldDiff + Colors.RESET + " gold.";
+                    hunter.changeGold(goldDiff);
+                } else {
+                    printMessage += "That'll teach you to go lookin' fer trouble in MY town! Now pay up!" + Colors.RESET;
+                    printMessage += "\nYou lost the brawl and pay " + Colors.YELLOW + goldDiff + Colors.RESET + " gold.";
+                    hunter.changeGold(-goldDiff);
+
+                }
+            }
+        } else if (Hunter.hasSword) {
+            loseChance = -1;
+            if (toughTown) {
+                noTroubleChance = 0.66;
+            } else {
+                noTroubleChance = 0.33;
+            }
+            if (Math.random() > noTroubleChance) {
+                printMessage = "You couldn't find any trouble";
+            } else {
+                printMessage = Colors.RED + "You want trouble, stranger!  You got it!\nOof! Umph! Ow!\n";
+                int goldDiff = (int) (Math.random() * 10) + 1;
+                if (Math.random() > loseChance) {
+                    printMessage += "The brawler, seeing your sword, realizes he picked a losing fight and gives you his gold." + Colors.RESET;
                     printMessage += "\nYou won the brawl and receive " + Colors.YELLOW + goldDiff + Colors.RESET + " gold.";
                     hunter.changeGold(goldDiff);
                 } else {

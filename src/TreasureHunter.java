@@ -17,6 +17,7 @@ public class TreasureHunter {
     private Hunter hunter;
     private boolean hardMode;
     public static boolean easyMode;
+    public static boolean samuraiMode;
 
     /**
      * Constructs the Treasure Hunter game.
@@ -59,6 +60,8 @@ public class TreasureHunter {
         } else if (difficulty.equals("e")) {
             easyMode = true;
             hunter.easyStart();
+        } else if (difficulty.equals("s")) {
+            samuraiMode = true;
         }
     }
 
