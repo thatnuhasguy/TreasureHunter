@@ -168,7 +168,7 @@ public class Town {
     public void lookForTrouble() {
         double noTroubleChance;
         double loseChance;
-        if (TreasureHunter.easyMode) {
+       if (TreasureHunter.easyMode) {
             if (toughTown) {
                 noTroubleChance = 0.66;
                 loseChance = .33;
